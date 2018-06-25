@@ -37,8 +37,6 @@ public:
 		MapTexture.setRepeated(false);
 		MapTexture.setSmooth(true);
 		music.openFromFile("Resource/ts.wav");
-
-		
 	}
 	void OnRender(sf::RenderTarget* TargetToBeRendered) {
 		sf::Vector2u WindowSize = TargetToBeRendered->getSize();
