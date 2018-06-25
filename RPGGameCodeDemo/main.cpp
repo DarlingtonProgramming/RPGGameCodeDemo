@@ -2,6 +2,8 @@
 #include "GameActivityCls.h"
 #include "GameWindowCls.h"
 #include <iostream>
+#include <SFML/Audio.hpp>
+
 
 const constexpr int WindowWidth = 800;
 const constexpr int WindowHeight = 600;
@@ -25,6 +27,7 @@ protected:
 	unsigned int CharacterPositionY = CharacterInitY;
 	sf::Vector2f m_MapSize;
 	sf::Vector2f m_CharacterSize;
+	sf::Music music;
 public:
 	RenderActivity() {
 		CharacterTexture.loadFromFile("Resource/Character.png");
@@ -33,6 +36,7 @@ public:
 		MapTexture.loadFromFile("Resource/Map.png");
 		MapTexture.setRepeated(false);
 		MapTexture.setSmooth(true);
+		music.openFromFile("Resource/ts.wav");
 
 		
 	}
@@ -113,12 +117,20 @@ public:
 	void OnMouseUp(sf::Mouse::Button Button, int X, int Y) {
 
 	}
+
+	void BGM() {
+		music.play();
+		music.setLoop(true);
+		music.setVolume(50);
+		music.setPitch(1.2);
+	}
 };
 
 int main()
 {
 	RenderTest mWindow;
 	RenderActivity mAct;
+	mAct.BGM();
 	mWindow.setWindowTitle("RPG Game Demo");
 	mWindow.setWindowSize(WindowWidth, WindowHeight);
 	mWindow.ContainedActivity = &mAct;
